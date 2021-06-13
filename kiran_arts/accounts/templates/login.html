@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{%block main%}
+
+
+{%load static%}
+
+
+<div class="shop mt-5">
+<div class="login" >
+
+<div class="row ">
+  <div class="col-5">
+ <img src="{%static 'images/web/login.svg'%}" alt="">
+
+  </div>
+
+  <div class="col-5">
+
+  <div class="row">
+
+    <div class="col-12">
+
+      <h2>Sign in</h2>
+
+
+
+
+
+  <form class="mt-4"  method="post">
+    {%csrf_token%}
+      <div class="mb-5">
+      <label for="uname" class="form-label"><h5>Username</h5></label>
+      <input class="form-control" type="text" name="uname" id="uname" value="">
+
+      </div>
+      <div class="mb-3">
+      <label for="passw" class="form-label"><h5>Password</h5></label>
+      <input class="form-control" type="password" name="passw" id="passw" value="">
+      </div>
+
+      <div class="mb-3">
+      <input class="btn btn-primary" type="submit" name="" value="Submit">
+      <input class="btn btn-primary" type="reset" name="" value="Reset">
+      </div>
+
+
+  </form>
+
+  </div>
+
+  </div>
+
+  <div class="row">
+
+    {% if messages %}
+    {%for i in messages%}
+    <div class="alert alert-warning" role="alert">
+    {{i}}
+  </div>
+    {%endfor%}
+    {% endif %}
+
+  </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+{%endblock%}

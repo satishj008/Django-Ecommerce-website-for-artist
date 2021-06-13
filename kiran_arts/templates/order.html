@@ -1,0 +1,100 @@
+<div class="container">
+{%for i in ol%}
+  <div class="card mt-3 ">
+  <div class="card-header ">
+
+    <div class="d-flex justify-content-between">
+      <div class="">Ordered Placed on<br> <b>{{i.orderdate}}</b>
+      </div>
+      <div class="">Total Bill <br> <b>Rs. {{i.totalbill}}</b>
+      </div>
+      <div class="">Order ID <br>#{{i.id}} <br> Invoice
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12  col-sm-7">
+        <h5 class="card-title mt-2">Order Status : Processing</h5>
+        <b><p>Order summary</p></b>
+
+        <!-- <h5 class="card-title mt-2"></h5> -->
+{%for pi in ppl%} {%for j in i.service_price%}  {%if pi.id == j.1%}
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text">{{pi.service}}</p>
+          </div>
+          <div class="col-2">
+            <p>{{pi.plan}}</p>
+
+          </div>
+          <div class="col-2">
+            <p>{{pi.price}}</p>
+
+          </div>
+          <div class="col-3 pb-3 ">
+                    <a href="{%url 'products:gig' pi.service.id%}" class="btn btn-primary" style="color:white">By again</a>
+          </div>
+        </div>
+{%endif%}{%endfor%}  {%endfor%}
+
+      </div>
+      <div class="col-12  col-sm-5">
+        <h5 class="card-title">Shipping details</h5>
+        <p class="card-text">{{i.ship_address}}<br> PIN :{{i.ship_pin}}</p>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{%endfor%}
+<!-- card end -->
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+  <div class="row">
+    <table border="1">
+      {%for i in ol%}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.ship_address}}</td>
+        <td>{{i.ship_email}}</td>
+
+        <td>{%for si in sel%} {%for j in i.service_price%}{%if si.id == j.0%} {{si.name}}{%endif%}{%endfor%}  {%endfor%}</td>
+        <td>Rs.{{i.totalbill}}</td>
+        <td>Rs.{{i.orderstatus}}</td>
+        <td>{{i.orderdate}}</td>
+      </tr>
+      {%endfor%}
+    </table>
+
+  </div>
+
+</div> -->
