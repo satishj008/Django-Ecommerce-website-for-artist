@@ -17,7 +17,7 @@
 
   <div class="card-body">
     <div class="row">
-      <div class="col-12  col-sm-7">
+      <div class="col-12  col-sm-8">
         <h5 class="card-title mt-2">Order Status : Processing</h5>
         <b><p>Order summary</p></b>
 
@@ -36,13 +36,13 @@
 
           </div>
           <div class="col-3 pb-3 ">
-                    <a href="{%url 'products:gig' pi.service.id%}" class="btn btn-primary" style="color:white">By again</a>
+                    <a href="{%url 'products:gig' pi.service.id%}" class="btn btn-primary" style="color:white">Buy again</a>
           </div>
         </div>
 {%endif%}{%endfor%}  {%endfor%}
 
       </div>
-      <div class="col-12  col-sm-5">
+      <div class="col-12  col-sm-4">
         <h5 class="card-title">Shipping details</h5>
         <p class="card-text">{{i.ship_address}}<br> PIN :{{i.ship_pin}}</p>
 
