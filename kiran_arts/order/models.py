@@ -18,7 +18,7 @@ class Order(models.Model):
     ship_contact=models.CharField(max_length=13)
     ship_country=models.CharField(max_length=30)
     ship_state=models.CharField(max_length=30)
-    ship_address=models.TextField(max_length=300)
+    ship_address=models.TextField(max_length=1000)
     ship_pin=models.IntegerField()
     payment=models.CharField(max_length=30)
 

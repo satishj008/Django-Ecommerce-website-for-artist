@@ -17,7 +17,7 @@ class UserForm(UserCreationForm):
     first_name=forms.CharField(max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name=forms.CharField(max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
     email=forms.EmailField(max_length=254,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    address=forms.CharField(max_length=30,widget=forms.Textarea(attrs={'class': 'form-control'}))
+    address=forms.CharField(max_length=300,widget=forms.Textarea(attrs={'class': 'form-control'}))
     pin=forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password1=forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2=forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class': 'form-control'}))

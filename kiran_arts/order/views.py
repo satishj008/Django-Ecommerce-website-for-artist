@@ -29,7 +29,7 @@ def order_view(request):
     nc=cart_count(request)
     sel=Service.objects.all()
     ppl=PlanPrice.objects.all()
-    ol=Order.objects.filter(user=request.user)
+    ol=Order.objects.filter(user=request.user).order_by('orderdate').reverse()
     for i in ol:
         i.service_price=conv(i.service_price)
         print(">>>>>",i.service_price)
