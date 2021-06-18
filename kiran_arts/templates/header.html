@@ -12,16 +12,16 @@
         <div class="col-lg-2 col-md-2 col-12">
           <!-- Logo -->
           <div class="logo">
-            <a href="index.html"><img src="{%static 'images/web/logo.png'%}" alt="logo"></a>
+            <a href="/"><img src="{%static 'images/web/logo.png'%}" alt="logo"></a>
           </div>
           <!--/ End Logo -->
           <!-- Search Form -->
-          <div class="search-top">
-            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+          <div class="search-top" >
+            <div class="top-search"><a href="#"><i class="ti-search"></i></a></div>
             <!-- Search Form -->
-            <div class="search-top">
-              <form class="search-form">
-                <input type="text" placeholder="Search here..." name="search">
+            <div class="search-form">
+              <form  method="get" action="/prod-search">
+                <input type="search" placeholder="Search here..." name="search" id="search">
                 <button value="search" type="submit"><i class="ti-search"></i></button>
               </form>
             </div>
