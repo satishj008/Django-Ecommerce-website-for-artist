@@ -1,4 +1,8 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+
+{% load filter %}
+
+{%for i in sel%}
+<div class="modal fade" id="mymod{{i.id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -11,16 +15,16 @@
               <div class="product-gallery">
                 <div class="quickview-slider-active">
                   <div class="single-slider">
-                    <img src="https://via.placeholder.com/569x528" alt="#">
+                    <img src={{i.simage}} alt="#">
                   </div>
                   <div class="single-slider">
-                    <img src="https://via.placeholder.com/569x528" alt="#">
+                    <img src={{i.simage}} alt="#">
                   </div>
                   <div class="single-slider">
-                    <img src="https://via.placeholder.com/569x528" alt="#">
+                    <img src={{i.simage}} alt="#">
                   </div>
                   <div class="single-slider">
-                    <img src="https://via.placeholder.com/569x528" alt="#">
+                    <img src={{i.simage}} alt="#">
                   </div>
                 </div>
               </div>
@@ -28,7 +32,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <div class="quickview-content">
-                                <h2>Flared Shift Dress</h2>
+                                <h2>{{i.name}}</h2>
                                 <div class="quickview-ratting-review">
                                     <div class="quickview-ratting-wrap">
                                         <div class="quickview-ratting">
@@ -40,58 +44,89 @@
                                         </div>
                                         <a href="#"> (1 customer review)</a>
                                     </div>
-                                    <div class="quickview-stock">
+                                    <!-- <div class="quickview-stock">
                                         <span><i class="fa fa-check-circle-o"></i> in stock</span>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <h3>$29.00</h3>
-                                <div class="quickview-peragraph">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
+
+
+                                <div class="row  mt-2" >
+
+                                  <div class="col-12">
+                          
+                                    <!-- Start -->
+                          
+                          
+                          
+                          <nav >
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                              <!-- loop1 -->
+                              <a class="nav-item nav-link active col-4" id="nav-Basic-tab" data-toggle="tab" href="#nav-Basic{{i.id}}"  aria-controls="nav-basic" aria-selected="true"><h5>Basic</h5></a>
+                              <a class="nav-item nav-link  col-4" id="nav-Standard-tab" data-toggle="tab" href="#nav-Standard{{i.id}}"  aria-controls="nav-standard" aria-selected="false"><h5>Standard</h5></a>
+                              <a class="nav-item nav-link  col-4" id="nav-Premium-tab" data-toggle="tab" href="#nav-Premium{{i.id}}"  aria-controls="nav-premium" aria-selected="false"><h5>Premium</h5></a>
+                              <!-- loop1  -->
+                            </div>
+                          </nav>
+                          
+                          
+                          
+                          <div class="tab-content" id="nav-tabContent">
+                          
+                          
+                            {%for b in ppl|servicefilter:i.id%}
+
+                            
+
+            
+                       
+
+                              <div class="tab-pane fade {{b.plan|acf}}" id="nav-{{b.plan}}{{i.id}}" role="tabpanel" aria-labelledby="nav-{{b.plan}}-tab">
+                          
+                  
+                          
+                              <div class="container">
+                                <h5>&nbsp</h5>
+                                <h5 >{{b.plan}} Package - Popular &nbsp &nbsp Rs.{{b.price}} </h5><br>
+                            {{b.plandiscreption|linebreaks}}
+                          
+                            {%if user.is_authenticated%}
+                            <a href="{%url 'cart:addcart' sid=sel.0.id ppid=b.id%}" class="btn btn-primary col-12 mb-4 mt-4" type="button" id="addb" name="button">Add to cart</a>
+                              {%else%}
+                            <a href="{%url 'accounts:login'  sid=sel.0.id%}" class="btn btn-primary col-12 mb-4 mt-4" type="button" id="addb" name="button">Add to cart</a>
+                              {%endif%}
+                            <!-- <button class="btn btn-primary col-12 mb-4 mt-4" type="" id="addb" name="button">Add to cart</button> -->
+                              </div>
+                            
+                            </div>
+                          
+                            {%endfor%}
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                            </div>
+                          
+                          
+                          <!-- end -->
+                          
+                          </div>
                                 </div>
-              <div class="size">
-                <div class="row">
-                  <div class="col-lg-6 col-12">
-                    <h5 class="title">Size</h5>
-                    <select>
-                      <option selected="selected">s</option>
-                      <option>m</option>
-                      <option>l</option>
-                      <option>xl</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-6 col-12">
-                    <h5 class="title">Color</h5>
-                    <select>
-                      <option selected="selected">orange</option>
-                      <option>purple</option>
-                      <option>black</option>
-                      <option>pink</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-                                <div class="quantity">
-                <!-- Input Order -->
-                <div class="input-group">
-                  <div class="button minus">
-                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                      <i class="ti-minus"></i>
-                    </button>
-                  </div>
-                  <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-                  <div class="button plus">
-                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-                      <i class="ti-plus"></i>
-                    </button>
-                  </div>
-                </div>
-                <!--/ End Input Order -->
-              </div>
-              <div class="add-to-cart">
+
+
+
+
+                              
+                               
+         
+                   
+              <!-- <div class="add-to-cart">
                 <a href="#" class="btn">Add to cart</a>
                 <a href="#" class="btn min"><i class="ti-heart"></i></a>
                 <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-              </div>
+              </div> -->
                                 <div class="default-social">
                 <h4 class="share-now">Share:</h4>
                                     <ul>
@@ -108,3 +143,69 @@
             </div>
         </div>
 </div>
+{%endfor%}
+
+
+
+
+
+<style >
+
+
+  #nav-tab{
+    border-color:black;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+
+  }
+
+  #nav-Basic-tab:hover,#nav-Standard-tab:hover,#nav-Premium-tab:hover{
+  border-color:orange;
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  }
+
+
+
+  #nav-Basic-tab.active, #nav-Standard-tab.active, #nav-Premium-tab.active{
+    color:orange;
+    border-color:orange;
+    border-style: solid;
+    border-width: 0px 0px 3px 0px;
+  }
+
+  #nav-Basic-tab, #nav-Standard-tab, #nav-Premium-tab{
+
+    border-color:black;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+  }
+
+    #nav-tabContent{
+      border-color:black;
+      border-style: solid;
+      border-width: 0px 1px 1px 1px;
+
+    }
+
+    #addb{
+      color:white;
+      text-align: center;
+      border:none;
+      background-color:#f7941d;
+      border-radius: 25px;
+    }
+
+    #addb:hover{
+      color:white;
+      border:none;
+      background-color:#e48717;
+      border-radius: 25px;
+    }
+
+
+
+
+
+
+</style>

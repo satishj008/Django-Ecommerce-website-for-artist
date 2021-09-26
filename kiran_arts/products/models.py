@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Category(models.Model):
     name=models.CharField(max_length=30)
@@ -53,6 +54,7 @@ class Service(models.Model):
 class PlanPrice(models.Model):
     plan=models.ForeignKey(Plan,on_delete=models.CASCADE)
     service=models.ForeignKey(Service,on_delete=models.CASCADE)
+    plandiscreption=models.TextField(max_length=300)
     price=models.IntegerField()
 
 
@@ -63,3 +65,15 @@ class PlanPrice(models.Model):
     def __str__(self):
         return " ".join([str(self.plan),str(self.price)])
 # Create your models here.
+
+
+class ServiceForm(ModelForm):
+    class Meta:
+        model = Service
+        fields = ["name","description","simage",'plan',"ratings","subcategory"]
+
+
+class PlanPriceForm(ModelForm):
+    class Meta:
+        model = PlanPrice
+        fields = ["plan","service","plandiscreption","price"]

@@ -13,7 +13,7 @@ def conv(st):
       if j.isdigit():
         p+=j
     sd.append(int(p))
-  print(sd)
+
   s=[]
   t=[]
   for i in range(len(sd)):
@@ -32,7 +32,6 @@ def order_view(request):
     ol=Order.objects.filter(user=request.user).order_by('orderdate').reverse()
     for i in ol:
         i.service_price=conv(i.service_price)
-        print(">>>>>",i.service_price)
     context={"ol":ol,"sel":sel,"ppl":ppl,'nc':nc}
     return render(request,"order_view.html",context)
 

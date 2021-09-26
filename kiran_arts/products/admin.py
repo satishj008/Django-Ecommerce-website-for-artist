@@ -19,7 +19,7 @@ class PlanAdmin(admin.ModelAdmin):
 admin.site.register(Plan,PlanAdmin)
 
 class PlanPriceAdmin(admin.ModelAdmin):
-    list_display=["id","plan","service","price"]
+    list_display=["id","plan","service","price","plandiscreption"]
     list_filter=["service","plan"]
 
 admin.site.register(PlanPrice,PlanPriceAdmin)

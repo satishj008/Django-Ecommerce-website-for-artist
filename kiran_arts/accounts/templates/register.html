@@ -8,11 +8,11 @@
   <div class="row">
 
 
-   <div class=" col-6">
+   <div class=" col-12 col-md-5">
        <img src="{%static 'images/web/signup2.svg'%}" alt="" >
    </div>
 
-   <div class="col-6">
+   <div class="col-12 col-md-5">
 
 
 <h2>Sign Up</h2>
@@ -62,8 +62,17 @@
       <label>Confirm Password</label>
       {{form.password2}}
     </div>
-    <input class="btn btn-primary" type="submit" name="" value="Submit">
-    <input  class="btn btn-primary" type="reset" name="" value="Reset">
+
+    <div class="mb-3">
+    <input id="btn_s" class="btn btn-primary" type="submit" name="" value="Submit">
+    <input id="btn_r"  class="btn btn-primary" type="reset" name="" value="Reset">
+    </div>
+
+    <div class="mb-3">
+      <p>Already have an account? &nbsp;  &nbsp; <a style="color:#f7941d;  font-weight: bold;" href="{%url 'accounts:login'%}">Sign In</a></p>
+     </div>
+
+
 </form>
   </div>
 
@@ -73,7 +82,11 @@
 </div>
 
 
+<style >
+  #btn_s,#btn_r{border:none; background-color:#f7941d; color:white;}
+    #btn_s:hover,#btn_r:hover {border:none; background-color:#da8117; color:white;}
 
+</style>
 
 
 

@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from products.models import Category,Subcategory,Service,Plan,PlanPrice
+from django.shortcuts import redirect, render
+from products.models import Category,Subcategory,Service,Plan,PlanPrice,ServiceForm
 from cart.models import Cart
 
 def cart_count(request):
@@ -54,3 +54,18 @@ def gig_view(request,id=None):
 
     return render(request,"gig_view.html",context)
 # Create your views here.
+
+
+
+def service_reg(request):
+    if request.user.is_superuser:
+        if request.method=="POST":
+            pass
+        else:
+            f=ServiceForm()
+            print("hello superuser")
+            return render(request,"serreg.html",{"f":f})
+    else:
+        print("hello normal user")
+    
+    return redirect("/")

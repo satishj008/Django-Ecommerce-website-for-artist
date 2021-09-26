@@ -4,6 +4,9 @@ from .models import UserForm
 from django.contrib.auth import login,logout,authenticate
 from products.models import Category,Subcategory,Service,Plan,PlanPrice
 from cart.views import Cart
+from products.views  import gig_view
+from .templatetags import filter
+
 
 
 def cart_count(request):
@@ -52,16 +55,41 @@ def add_user(request):
         return render(request,"register.html",d)
 
 
-def login_view(request):
+# def login_view(request):
+#     nc=cart_count(request)
+#     if request.method=="POST":
+#         uname=request.POST.get("uname")
+#         passw=request.POST.get("passw")
+#         u=authenticate(request,username=uname,password=passw)
+#         if u is not None:
+#             login(request, u)
+#             return redirect("/")
+
+#         else:
+#             msg.error(request,"Invalid username & password")
+#             return render(request,"login.html",{'nc':nc})
+
+#     else:
+
+#         return render(request,"login.html",{'nc':nc})
+
+
+
+def login_view(request,sid=None):
     nc=cart_count(request)
+
+    
     if request.method=="POST":
         uname=request.POST.get("uname")
         passw=request.POST.get("passw")
         u=authenticate(request,username=uname,password=passw)
         if u is not None:
             login(request, u)
-            return redirect("/")
 
+            if sid==None:
+                return redirect("/")
+            else:
+                return redirect("/prod-gig/"+str(sid))
         else:
             msg.error(request,"Invalid username & password")
             return render(request,"login.html",{'nc':nc})
@@ -76,3 +104,8 @@ def logout_view(request):
     return redirect("/")
 
 # Create your views here.
+
+
+def contact_view(request):
+    return render(request,"contact.html")
+

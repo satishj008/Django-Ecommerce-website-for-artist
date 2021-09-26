@@ -13,17 +13,36 @@ def add_cart(request,sid,ppid):
     c.service=service
     c.planprice=planprice
     c.save()
-    return redirect("/")
+    return redirect("/cart-view")
 
 
 
 def cart(request,id=None):
     if id!=None:
-        c=Cart.objects.get(id=id)
-        c.delete()
+        try:
+            c=Cart.objects.get(id=id)
+            c.delete()
+        except:
+            cartl=Cart.objects.all()
+
+        
+        
         cartl=Cart.objects.all()
-        context={"cartl":cartl}
+        nc=len(cartl)
+        context={"cartl":cartl,"nc":nc}
         return render(request,"cart_view.html",context)
+
+
+        # try:
+        #     c=Cart.objects.get(id=id)
+        #     c.delete()
+        # except:
+        #     cartl=Cart.objects.all()
+
+        # cartl=Cart.objects.all()
+        # nc=len(cartl)
+        # context={"cartl":cartl,"nc":nc}
+        # return render(request,"cart_view.html",context)
     else:
         cartl=Cart.objects.filter(user=request.user)
         nc=len(cartl)

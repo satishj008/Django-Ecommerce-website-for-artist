@@ -10,4 +10,5 @@ urlpatterns = [
     path('fbycat',v.filter_by_cat,name="filter_by_cat"),
     path('gig/<int:id>',v.gig_view,name="gig"),
     path('search',v.search,name="search"),
+    path('serreg',v.service_reg,name="serreg"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

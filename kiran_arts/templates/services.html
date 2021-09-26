@@ -1,3 +1,4 @@
+{%load filter%}
 <div class="product-area section">
         <div class="container">
     <div class="row">
@@ -33,11 +34,11 @@
                       <div class="product-img">
                         <a href="{%url 'products:gig' i.id %}">
                           <img class="default-img" src="{{i.simage}}" alt="#">
-                          <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                          <img class="hover-img" src="{{i.simage}}" alt="#">
                         </a>
                         <div class="button-head">
                           <div class="product-action">
-                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                            <a data-toggle="modal" data-target="#mymod{{i.id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                             <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                             <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                           </div>
@@ -72,12 +73,16 @@
             <!-- Start Single Tab -->
             {%for j in cl%}
 
-            <div class="tab-pane fade" id="{{j.id}}" role="tabpanel">
+           
+            <!--/ End Single Tab-->
+
+             <!-- start test -->
+
+             <div class="tab-pane fade" id="{{j.id}}" role="tabpanel">
               <div class="tab-single">
                 <div class="row">
-                  {%for prod,cat in serl%}
-                  {%if cat == j.name %}
-                   {%for k in prod%}
+                  
+                   {%for k in sel|catfilter:j.id%}
 
                   <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                     <div class="single-product">
@@ -88,7 +93,7 @@
                         </a>
                         <div class="button-head">
                           <div class="product-action">
-                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                            <a data-toggle="modal" data-target="#mymod{{k.id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                             <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                             <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                           </div>
@@ -114,13 +119,14 @@
                     </div>
                   </div>
                     {%endfor%}
-                    {%endif%}
-                  {%endfor%}
+                
 
               </div>
             </div>
             </div>
-            <!--/ End Single Tab -->
+
+             <!-- end test -->
+
             {%endfor%}
             <!--/ End Single Tab -->
           </div>
